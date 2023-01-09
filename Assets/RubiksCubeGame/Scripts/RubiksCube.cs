@@ -6,7 +6,15 @@ using System.Linq;
 public class RubiksCube : MonoBehaviour
 {
     [SerializeField]
-    List<Cube> m_Cubes = new List<Cube>();
+    GameObject m_CubeArrayPrefab;
+
+    [SerializeField]
+    List<CubeArray> m_Rows = new List<CubeArray>();
+
+    [SerializeField]
+    List<CubeArray> m_Columns = new List<CubeArray>();
+
+
 
     [SerializeField]
     CubeArray m_Row1;
@@ -22,12 +30,42 @@ public class RubiksCube : MonoBehaviour
 
     private void Start()
     {
-        
+        InitializeCube();
     }
 
     private void Update()
     {
         UserInput();
+    }
+
+    private void InitializeCube()
+    {
+        ushort amountOfArrays = GameManager.m_CubeMatrixAmount;
+        ushort amountOfMiddleArrays = 0;
+
+        if(amountOfArrays <= 2)
+        {
+            amountOfMiddleArrays = 0;
+
+            // Initialize Horizontal Arrays
+            for(int i = 0; i < amountOfArrays; i++)
+            {
+                // Find Center of rotation for the array of cubes
+                float arrayCenter = (amountOfArrays / 2) - 0.5f;
+                CubeArray spawnedArray;
+
+                spawnedArray = Instantiate(m_CubeArrayPrefab.GetComponent<CubeArray>(), transform);
+                spawnedArray.transform.localPosition = new Vector3(arrayCenter, -i, arrayCenter);
+                spawnedArray.gameObject.name = "Row" + i;
+                spawnedArray.Initialize(RotationAxis.horizontal);
+
+                m_Rows.Add(spawnedArray);
+            }
+        }
+        else
+        {
+            amountOfMiddleArrays = (ushort)(amountOfArrays - 2);
+        }
     }
 
     private void UserInput()
@@ -69,6 +107,7 @@ public class RubiksCube : MonoBehaviour
         }
     }
 
+    // Operations required to make a rotation
     private void RotateCubeArray(CubeArray cubes, bool rotateClockwise = true)
     {
         ParentCubes(cubes);
@@ -120,7 +159,14 @@ public class RubiksCube : MonoBehaviour
     {
         Cube finalCube;
 
-        if(shiftClockwise)
+        //if(shiftClockwise)
+        //{
+        //    finalCube = cubes.Cubes[GameManager.m_CubeMatrixAmount];
+        //    cubes.Cubes.Remove(finalCube);
+        //    cubes.Cubes.Insert(0, finalCube);
+        //}
+
+        if (shiftClockwise)
         {
             finalCube = cubes.Cubes.Last();
             cubes.Cubes.Remove(finalCube);
