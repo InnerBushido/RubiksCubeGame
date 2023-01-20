@@ -7,23 +7,26 @@ public class CubeDetector : MonoBehaviour
 {
     public bool m_OrderByRow = false;
 
+    public Vector3 m_AxisOfRotation = Vector3.up;
+
     [SerializeField]
     List<GameObject> m_DetectedCubes = new List<GameObject>();
 
+    public List<GameObject> DetectedCubes
+    {
+        get { return m_DetectedCubes; }
+        set { m_DetectedCubes = value; }
+    }
+
+    // Needed to make sure cubes are detected in FixedUpdate
     bool ExecuteUpdated() => m_UpdateExecuted;
     bool m_UpdateExecuted = false;
 
     private void Start()
     {
         GetComponent<Collider>().enabled = false;
-    }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(DetectCubes());
-        }
+        DetectCubes();
     }
 
     private void FixedUpdate()
@@ -34,7 +37,12 @@ public class CubeDetector : MonoBehaviour
         }
     }
 
-    IEnumerator DetectCubes()
+    public void DetectCubes()
+    {
+        StartCoroutine(DetectCubesCoroutine());
+    }
+
+    IEnumerator DetectCubesCoroutine()
     {
         m_UpdateExecuted = false;
         m_DetectedCubes.Clear();
@@ -42,7 +50,7 @@ public class CubeDetector : MonoBehaviour
         yield return new WaitUntil(ExecuteUpdated);
         GetComponent<Collider>().enabled = false;
 
-        Debug.Log("Ordering Cubes");
+        //Debug.Log("Ordering Cubes");
         if(m_OrderByRow)
         {
             m_DetectedCubes = m_DetectedCubes
@@ -63,7 +71,7 @@ public class CubeDetector : MonoBehaviour
         if(other?.tag == "Cube")
         {
             m_DetectedCubes.Add(other.gameObject);
-            Debug.Log("Detected Cube: " + other.name);
+            //Debug.Log("Detected Cube: " + other.name);
         }
     }
 }

@@ -140,6 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f50f71e4ce8c7f4cbbda757998048b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_OrderByRow: 0
+  m_AxisOfRotation: {x: 1, y: 0, z: 0}
   m_DetectedCubes: []
 --- !u!54 &3778343053104986223
 Rigidbody:
@@ -581,6 +583,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f50f71e4ce8c7f4cbbda757998048b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_OrderByRow: 1
+  m_AxisOfRotation: {x: 1, y: 0, z: 0}
   m_DetectedCubes: []
 --- !u!54 &7263565067639625678
 Rigidbody:
@@ -953,6 +957,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f50f71e4ce8c7f4cbbda757998048b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_OrderByRow: 0
+  m_AxisOfRotation: {x: 1, y: 0, z: 0}
   m_DetectedCubes: []
 --- !u!54 &8588719163926384212
 Rigidbody:
@@ -1110,6 +1116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f50f71e4ce8c7f4cbbda757998048b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_OrderByRow: 0
+  m_AxisOfRotation: {x: 1, y: 0, z: 0}
   m_DetectedCubes: []
 --- !u!54 &18864896326940570
 Rigidbody:
@@ -1136,6 +1144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6378274381134186161}
+  - component: {fileID: 811620238}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1183,6 +1192,32 @@ Transform:
   m_Father: {fileID: 6378274382528992717}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &811620238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6378274381134186160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937bc03afe76c074d86d54a734693bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Rows:
+  - {fileID: 6450130611930433346}
+  - {fileID: 8190662450421443224}
+  - {fileID: 791960160466225947}
+  m_Columns:
+  - {fileID: 8141753296130541058}
+  - {fileID: 5973874315554533262}
+  - {fileID: 8090916707419595995}
+  m_Columns2:
+  - {fileID: 4718393476023463811}
+  - {fileID: 7935654932647416785}
+  - {fileID: 5884752216908722551}
+  m_CurrentRotator: {fileID: 0}
+  m_RotatingCubes: []
 --- !u!1 &6378274382528992716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1356,6 +1391,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f50f71e4ce8c7f4cbbda757998048b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_OrderByRow: 1
+  m_AxisOfRotation: {x: 1, y: 0, z: 0}
   m_DetectedCubes: []
 --- !u!54 &8288598267073827523
 Rigidbody:
@@ -1480,6 +1517,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f50f71e4ce8c7f4cbbda757998048b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_OrderByRow: 0
+  m_AxisOfRotation: {x: 1, y: 0, z: 0}
   m_DetectedCubes: []
 --- !u!54 &1715323653479442434
 Rigidbody:
@@ -1604,6 +1643,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f50f71e4ce8c7f4cbbda757998048b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_OrderByRow: 0
+  m_AxisOfRotation: {x: 1, y: 0, z: 0}
   m_DetectedCubes: []
 --- !u!54 &4792485081942790692
 Rigidbody:
@@ -1728,6 +1769,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f50f71e4ce8c7f4cbbda757998048b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_OrderByRow: 0
+  m_AxisOfRotation: {x: 1, y: 0, z: 0}
   m_DetectedCubes: []
 --- !u!54 &3266212349163796444
 Rigidbody:
@@ -1976,6 +2019,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f50f71e4ce8c7f4cbbda757998048b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_OrderByRow: 1
+  m_AxisOfRotation: {x: 1, y: 0, z: 0}
   m_DetectedCubes: []
 --- !u!54 &3354246851830538719
 Rigidbody:

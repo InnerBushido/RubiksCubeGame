@@ -35,7 +35,7 @@ public class RubiksCube : MonoBehaviour
 
     private void Update()
     {
-        UserInput();
+        //UserInput();
     }
 
     private void InitializeCube()
@@ -68,44 +68,44 @@ public class RubiksCube : MonoBehaviour
         }
     }
 
-    private void UserInput()
-    {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            RotateCubeArray(m_Row1);
-        }
-        else if (Input.GetKeyDown(KeyCode.Q))
-        {
-            RotateCubeArray(m_Row1, false);
-        }
+    //private void UserInput()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.Alpha1))
+    //    {
+    //        RotateCubeArray(m_Row1);
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.Q))
+    //    {
+    //        RotateCubeArray(m_Row1, false);
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            RotateCubeArray(m_Row2);
-        }
-        else if (Input.GetKeyDown(KeyCode.W))
-        {
-            RotateCubeArray(m_Row2, false);
-        }
+    //    if (Input.GetKeyDown(KeyCode.Alpha2))
+    //    {
+    //        RotateCubeArray(m_Row2);
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.W))
+    //    {
+    //        RotateCubeArray(m_Row2, false);
+    //    }
         
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            RotateCubeArray(m_Column1);
-        }
-        else if (Input.GetKeyDown(KeyCode.E))
-        {
-            RotateCubeArray(m_Column1, false);
-        }
+    //    if (Input.GetKeyDown(KeyCode.Alpha3))
+    //    {
+    //        RotateCubeArray(m_Column1);
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.E))
+    //    {
+    //        RotateCubeArray(m_Column1, false);
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            RotateCubeArray(m_Column2);
-        }
-        else if (Input.GetKeyDown(KeyCode.R))
-        {
-            RotateCubeArray(m_Column2, false);
-        }
-    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha4))
+    //    {
+    //        RotateCubeArray(m_Column2);
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.R))
+    //    {
+    //        RotateCubeArray(m_Column2, false);
+    //    }
+    //}
 
     // Operations required to make a rotation
     private void RotateCubeArray(CubeArray cubes, bool rotateClockwise = true)
