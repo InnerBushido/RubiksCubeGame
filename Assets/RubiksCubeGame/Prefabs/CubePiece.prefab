@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1436550701796258453}
   - component: {fileID: 6949903613715707897}
   - component: {fileID: 6341371506089730438}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Orange
   m_TagString: CubeColor
   m_Icon: {fileID: 0}
@@ -88,11 +88,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198372903886960238}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 1.1, z: 1.1}
-  m_Center: {x: -2, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1255491858227584858
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 2764083204884206233}
   - component: {fileID: 642519523615496382}
   - component: {fileID: 5152324359975027206}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Blue
   m_TagString: CubeColor
   m_Icon: {fileID: 0}
@@ -181,11 +181,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255491858227584858}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1, y: 1.1, z: 3}
-  m_Center: {x: 0, y: 0, z: -2}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3571187420075085238
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 9214147966357229169}
   - component: {fileID: 3339289112048047875}
   - component: {fileID: 5438981994397308310}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: White
   m_TagString: CubeColor
   m_Icon: {fileID: 0}
@@ -274,11 +274,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3571187420075085238}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1, y: 3, z: 1.1}
-  m_Center: {x: 0, y: -2, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5431805527815277667
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +291,7 @@ GameObject:
   - component: {fileID: 519494433430848574}
   - component: {fileID: 4963638449237508599}
   - component: {fileID: 3112262724653681305}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Yellow
   m_TagString: CubeColor
   m_Icon: {fileID: 0}
@@ -367,11 +367,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5431805527815277667}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1, y: 3, z: 1.1}
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6255580149965124684
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 1815794231213977029}
   - component: {fileID: 2404626091435293081}
   - component: {fileID: 1434121814804830669}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Red
   m_TagString: CubeColor
   m_Icon: {fileID: 0}
@@ -460,11 +460,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6255580149965124684}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 1.1, z: 1.1}
-  m_Center: {x: 2, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6916545666834172404
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 6916545666834172401}
   - component: {fileID: 6916545666834172406}
   - component: {fileID: 6916545666834172407}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CubePiece
   m_TagString: Cube
   m_Icon: {fileID: 0}
@@ -576,7 +576,7 @@ GameObject:
   - component: {fileID: 8376967646407158425}
   - component: {fileID: 3845492162400907743}
   - component: {fileID: 2736765627440270034}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Green
   m_TagString: CubeColor
   m_Icon: {fileID: 0}
@@ -652,8 +652,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7964940356601869684}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1, y: 1.1, z: 3}
-  m_Center: {x: 0, y: 0, z: 2}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

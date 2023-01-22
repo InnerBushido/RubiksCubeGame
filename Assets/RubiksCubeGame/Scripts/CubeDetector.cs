@@ -12,10 +12,19 @@ public class CubeDetector : MonoBehaviour
     [SerializeField]
     List<GameObject> m_DetectedCubes = new List<GameObject>();
 
+    [SerializeField]
+    List<GameObject> m_DetectedCubeColors = new List<GameObject>();
+
     public List<GameObject> DetectedCubes
     {
         get { return m_DetectedCubes; }
         set { m_DetectedCubes = value; }
+    }
+
+    public List<GameObject> DetectedCubeColors
+    {
+        get { return m_DetectedCubeColors; }
+        set { m_DetectedCubeColors = value; }
     }
 
     // Needed to make sure cubes are detected in FixedUpdate
@@ -46,11 +55,11 @@ public class CubeDetector : MonoBehaviour
     {
         m_UpdateExecuted = false;
         m_DetectedCubes.Clear();
+        m_DetectedCubeColors.Clear();
         GetComponent<Collider>().enabled = true;
         yield return new WaitUntil(ExecuteUpdated);
         GetComponent<Collider>().enabled = false;
 
-        //Debug.Log("Ordering Cubes");
         if(m_OrderByRow)
         {
             m_DetectedCubes = m_DetectedCubes
@@ -71,7 +80,10 @@ public class CubeDetector : MonoBehaviour
         if(other?.tag == "Cube")
         {
             m_DetectedCubes.Add(other.gameObject);
-            //Debug.Log("Detected Cube: " + other.name);
+        }
+        else if (other?.tag == "CubeColor")
+        {
+            m_DetectedCubeColors.Add(other.gameObject);
         }
     }
 }

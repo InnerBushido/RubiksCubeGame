@@ -7,6 +7,7 @@ public class CameraRotation : MonoBehaviour
     public float m_TurnSpeed = 5.0f;
     public Transform m_CameraPivotUp;
     public Vector2 m_ZoomingThreshold = new Vector2(-8, -12);
+    public CubeRotation m_CubeRotation;
 
     private RotationAxis m_CurrentRotationAxis = RotationAxis.none;
 
@@ -29,9 +30,12 @@ public class CameraRotation : MonoBehaviour
         YAxis
     }
 
-    void Update()
+    void LateUpdate()
     {
-        HandleInput();
+        if(m_CubeRotation != null && !m_CubeRotation.dragging)
+        {
+            HandleInput();
+        }
     }
 
     private void HandleInput()

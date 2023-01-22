@@ -19,9 +19,24 @@ public class CubeRotation : MonoBehaviour
     // Lock Player from rotating while rotation is active
     private bool rotating = false;
 
+    int m_CubeLayerMask = 1 << 8;
+    int m_ColorsLayerMask = 1 << 9;
+    int m_AxisFlipLayerMask = 1 << 10;
+
+    public bool dragging { get; set; } = false;
+
+    Vector3 clickDragStartPosition = new Vector3();
+    int draggingMinimumAmount = 75;
+    GameObject m_CubeColorSelected;
+    GameObject m_CubeSelected;
+    [SerializeField]
+    bool m_FlipRotationAxis = false;
+
 
     private void Update()
     {
+        CheckForCubeCollision();
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             RotateAxis(m_Rows[0]);
@@ -104,6 +119,147 @@ public class CubeRotation : MonoBehaviour
         }
     }
 
+    private void CheckForCubeCollision()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            // Check for Collision with Color on Cube
+            if (Physics.Raycast(ray, out hit, 100.0f, m_ColorsLayerMask))
+            {
+                m_CubeColorSelected = hit.collider.gameObject;
+
+                clickDragStartPosition = Input.mousePosition;
+                dragging = true;
+            }
+
+            // Check for Collision with Cube
+            if (Physics.Raycast(ray, out hit, 100.0f, m_CubeLayerMask))
+            {
+                m_CubeSelected = hit.collider.gameObject;
+            }
+
+            // Check if we need to flip the rotation axis (on back side of cube)
+            if (Physics.Raycast(ray, out hit, 100.0f, m_AxisFlipLayerMask))
+            {
+                // See if we need to flip rotation axis
+                if (hit.collider.gameObject.GetComponent<FlipRotationAxis>() != null)
+                {
+                    m_FlipRotationAxis = true;
+                }
+                else
+                {
+                    m_FlipRotationAxis = false;
+                }
+            }
+        }
+        else if(Input.GetMouseButtonUp(0))
+        {
+            if(dragging)
+            {
+                Vector3 dragVector = Input.mousePosition - clickDragStartPosition;
+                float dotProductVertical = Vector3.Dot(Vector3.up, dragVector.normalized);
+                float dotProductHorizontal = Vector3.Dot(Vector3.right, dragVector.normalized);
+                CubeDetector detectorToRotate;
+
+                dragging = false;
+
+                if(Mathf.Abs(dotProductVertical) >= Mathf.Abs(dotProductHorizontal))
+                {
+                    // Move Vertical
+                    if(dragVector.magnitude >= draggingMinimumAmount)
+                    {
+                        detectorToRotate = FindAppropriateDetector(false);
+
+                        if(dotProductVertical >= 0)
+                        {
+                            RotateAxis(detectorToRotate);
+                        }
+                        else
+                        {
+                            RotateAxis(detectorToRotate, false);
+                        }
+                    }
+                }
+                else if (Mathf.Abs(dotProductHorizontal) > Mathf.Abs(dotProductVertical))
+                {
+                    // Move Horizontal
+                    if (dragVector.magnitude >= draggingMinimumAmount)
+                    {
+                        detectorToRotate = FindAppropriateDetector();
+
+                        if (dotProductHorizontal >= 0)
+                        {
+                            RotateAxis(detectorToRotate);
+                        }
+                        else
+                        {
+                            RotateAxis(detectorToRotate, false);
+                        }
+                    }
+                }
+                else
+                {
+                    Debug.LogError("A Drag direction should always occur.");
+                }
+            }
+        }
+    }
+
+    private CubeDetector FindAppropriateDetector(bool isHorizontal = true)
+    {
+        CubeDetector foundDetector = null;
+
+        if(isHorizontal)
+        {
+            foreach(CubeDetector detector in m_Rows)
+            {
+                if(detector.DetectedCubeColors.Contains(m_CubeColorSelected))
+                {
+                    foundDetector = detector;
+                    break;
+                }
+            }
+
+            // Added to solve case where Color does not belong to a Row (top or bottom of cube)
+            if(foundDetector == null)
+            {
+                foreach (CubeDetector detector in m_Rows)
+                {
+                    if (detector.DetectedCubes.Contains(m_CubeSelected))
+                    {
+                        foundDetector = detector;
+                        break;
+                    }
+                }
+            }
+        }
+        else
+        {
+            foreach (CubeDetector detector in m_Columns)
+            {
+                if (detector.DetectedCubeColors.Contains(m_CubeColorSelected))
+                {
+                    foundDetector = detector;
+                    break;
+                }
+            }
+
+            foreach (CubeDetector detector in m_Columns2)
+            {
+                if (detector.DetectedCubeColors.Contains(m_CubeColorSelected))
+                {
+                    foundDetector = detector;
+                    break;
+                }
+            }
+        }
+
+        return foundDetector;
+    }
+
     public void RotateAxis(CubeDetector axis, bool rotateClockwise = true)
     {
         if (rotating)
@@ -124,11 +280,11 @@ public class CubeRotation : MonoBehaviour
             cube.transform.parent = m_CurrentRotator.transform;
         }
 
-        StartCoroutine(RotateAxis(rotateClockwise, axis.m_AxisOfRotation));
+        StartCoroutine(RotateAxisEnum(rotateClockwise, axis));
 
     }
 
-    IEnumerator RotateAxis(bool rotateClockwise, Vector3 rotationAxis)
+    IEnumerator RotateAxisEnum(bool rotateClockwise, CubeDetector axis)
     {
         //Debug.Log("Started Rotating");
 
@@ -137,8 +293,14 @@ public class CubeRotation : MonoBehaviour
         float duration = 0.5f;
         float t = 0;
 
+        // Only flip for Columns
+        if (m_FlipRotationAxis && !axis.m_OrderByRow)
+        {
+            rotateClockwise = !rotateClockwise;
+        }
+
         // Flip Rotation Direction
-        if(!rotateClockwise)
+        if (!rotateClockwise)
         {
             endRot *= -1;
         }
@@ -146,7 +308,7 @@ public class CubeRotation : MonoBehaviour
         while (t < 1f)
         {
             t = Mathf.Min(1f, t + Time.deltaTime / duration);
-            Vector3 newEulerOffset = rotationAxis * (endRot * t);
+            Vector3 newEulerOffset = axis.m_AxisOfRotation * (endRot * t);
 
             m_CurrentRotator.transform.localRotation = startRotation * Quaternion.Euler(newEulerOffset);
 
